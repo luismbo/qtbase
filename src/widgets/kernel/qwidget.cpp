@@ -8683,7 +8683,10 @@ bool QWidget::event(QEvent *event)
             if (res)
                 break;
         }
-        keyPressEvent(k);
+        keyPressEvent(k); // XXX: consider calling a callback for
+                          // these events to avoid the need to
+                          // subclassing + overriding virtual
+                          // functions.
 #ifdef QT_KEYPAD_NAVIGATION
         if (!k->isAccepted() && QApplication::keypadNavigationEnabled()
             && !(k->modifiers() & (Qt::ControlModifier | Qt::AltModifier | Qt::ShiftModifier))) {
