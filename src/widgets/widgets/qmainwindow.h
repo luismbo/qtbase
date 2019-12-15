@@ -91,7 +91,7 @@ public:
     Q_DECLARE_FLAGS(DockOptions, DockOption)
     Q_FLAG(DockOptions)
 
-    explicit QMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    Q_INVOKABLE explicit QMainWindow(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
     ~QMainWindow();
 
     QSize iconSize() const;
@@ -113,82 +113,82 @@ public:
 #if QT_CONFIG(tabwidget)
     QTabWidget::TabShape tabShape() const;
     void setTabShape(QTabWidget::TabShape tabShape);
-    QTabWidget::TabPosition tabPosition(Qt::DockWidgetArea area) const;
-    void setTabPosition(Qt::DockWidgetAreas areas, QTabWidget::TabPosition tabPosition);
+    Q_INVOKABLE QTabWidget::TabPosition tabPosition(Qt::DockWidgetArea area) const;
+    Q_INVOKABLE void setTabPosition(Qt::DockWidgetAreas areas, QTabWidget::TabPosition tabPosition);
 #endif // QT_CONFIG(tabwidget)
 
     void setDockOptions(DockOptions options);
     DockOptions dockOptions() const;
 
-    bool isSeparator(const QPoint &pos) const;
+    Q_INVOKABLE bool isSeparator(const QPoint &pos) const;
 
 #if QT_CONFIG(menubar)
-    QMenuBar *menuBar() const;
-    void setMenuBar(QMenuBar *menubar);
+    Q_INVOKABLE QMenuBar *menuBar() const;
+    Q_INVOKABLE void setMenuBar(QMenuBar *menubar);
 
-    QWidget  *menuWidget() const;
-    void setMenuWidget(QWidget *menubar);
+    Q_INVOKABLE QWidget  *menuWidget() const;
+    Q_INVOKABLE void setMenuWidget(QWidget *menubar);
 #endif
 
 #if QT_CONFIG(statusbar)
-    QStatusBar *statusBar() const;
-    void setStatusBar(QStatusBar *statusbar);
+    Q_INVOKABLE QStatusBar *statusBar() const;
+    Q_INVOKABLE void setStatusBar(QStatusBar *statusbar);
 #endif
 
-    QWidget *centralWidget() const;
-    void setCentralWidget(QWidget *widget);
+    Q_INVOKABLE QWidget *centralWidget() const;
+    Q_INVOKABLE void setCentralWidget(QWidget *widget);
 
-    QWidget *takeCentralWidget();
+    Q_INVOKABLE QWidget *takeCentralWidget();
 
 #if QT_CONFIG(dockwidget)
-    void setCorner(Qt::Corner corner, Qt::DockWidgetArea area);
-    Qt::DockWidgetArea corner(Qt::Corner corner) const;
+    Q_INVOKABLE void setCorner(Qt::Corner corner, Qt::DockWidgetArea area);
+    Q_INVOKABLE Qt::DockWidgetArea corner(Qt::Corner corner) const;
 #endif
 
 #if QT_CONFIG(toolbar)
-    void addToolBarBreak(Qt::ToolBarArea area = Qt::TopToolBarArea);
-    void insertToolBarBreak(QToolBar *before);
+    Q_INVOKABLE void addToolBarBreak(Qt::ToolBarArea area = Qt::TopToolBarArea);
+    Q_INVOKABLE void insertToolBarBreak(QToolBar *before);
 
-    void addToolBar(Qt::ToolBarArea area, QToolBar *toolbar);
-    void addToolBar(QToolBar *toolbar);
-    QToolBar *addToolBar(const QString &title);
-    void insertToolBar(QToolBar *before, QToolBar *toolbar);
-    void removeToolBar(QToolBar *toolbar);
-    void removeToolBarBreak(QToolBar *before);
+    Q_INVOKABLE void addToolBar(Qt::ToolBarArea area, QToolBar *toolbar);
+    Q_INVOKABLE void addToolBar(QToolBar *toolbar);
+    Q_INVOKABLE QToolBar *addToolBar(const QString &title);
+    Q_INVOKABLE void insertToolBar(QToolBar *before, QToolBar *toolbar);
+    Q_INVOKABLE void removeToolBar(QToolBar *toolbar);
+    Q_INVOKABLE void removeToolBarBreak(QToolBar *before);
 
     bool unifiedTitleAndToolBarOnMac() const;
 
-    Qt::ToolBarArea toolBarArea(
+    Q_INVOKABLE Qt::ToolBarArea toolBarArea(
 #if QT_VERSION >= QT_VERSION_CHECK(6,0,0)
         const
 #endif
         QToolBar *toolbar) const;
-    bool toolBarBreak(QToolBar *toolbar) const;
+    Q_INVOKABLE bool toolBarBreak(QToolBar *toolbar) const;
 #endif
 #if QT_CONFIG(dockwidget)
-    void addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockwidget);
-    void addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockwidget,
-                       Qt::Orientation orientation);
-    void splitDockWidget(QDockWidget *after, QDockWidget *dockwidget,
-                         Qt::Orientation orientation);
+    Q_INVOKABLE void addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockwidget);
+    Q_INVOKABLE void addDockWidget(Qt::DockWidgetArea area, QDockWidget *dockwidget,
+                                   Qt::Orientation orientation);
+    Q_INVOKABLE void splitDockWidget(QDockWidget *after, QDockWidget *dockwidget,
+                                     Qt::Orientation orientation);
 #if QT_CONFIG(tabbar)
-    void tabifyDockWidget(QDockWidget *first, QDockWidget *second);
-    QList<QDockWidget*> tabifiedDockWidgets(QDockWidget *dockwidget) const;
+    Q_INVOKABLE void tabifyDockWidget(QDockWidget *first, QDockWidget *second);
+    Q_INVOKABLE QList<QDockWidget*> tabifiedDockWidgets(QDockWidget *dockwidget) const;
 #endif
-    void removeDockWidget(QDockWidget *dockwidget);
-    bool restoreDockWidget(QDockWidget *dockwidget);
+    Q_INVOKABLE void removeDockWidget(QDockWidget *dockwidget);
+    Q_INVOKABLE bool restoreDockWidget(QDockWidget *dockwidget);
 
-    Qt::DockWidgetArea dockWidgetArea(QDockWidget *dockwidget) const;
+    Q_INVOKABLE Qt::DockWidgetArea dockWidgetArea(QDockWidget *dockwidget) const;
 
-    void resizeDocks(const QList<QDockWidget *> &docks,
-                     const QList<int> &sizes, Qt::Orientation orientation);
+    Q_INVOKABLE void resizeDocks(const QList<QDockWidget *> &docks,
+                                 const QList<int> &sizes, Qt::Orientation orientation);
 #endif // QT_CONFIG(dockwidget)
 
-    QByteArray saveState(int version = 0) const;
-    bool restoreState(const QByteArray &state, int version = 0);
+    Q_INVOKABLE QByteArray saveState(int version = 0) const;
+    Q_INVOKABLE bool restoreState(const QByteArray &state, int version = 0);
 
 #if QT_CONFIG(menu)
-    virtual QMenu *createPopupMenu();
+    Q_INVOKABLE virtual QMenu *createPopupMenu();
 #endif
 
 public Q_SLOTS:

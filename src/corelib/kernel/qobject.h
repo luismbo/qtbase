@@ -215,9 +215,9 @@ public:
 
     inline const QObjectList &children() const { return d_ptr->children; }
 
-    void setParent(QObject *parent);
-    void installEventFilter(QObject *filterObj);
-    void removeEventFilter(QObject *obj);
+    Q_INVOKABLE void setParent(QObject *parent);
+    Q_INVOKABLE void installEventFilter(QObject *filterObj);
+    Q_INVOKABLE void removeEventFilter(QObject *obj);
 
     static QMetaObject::Connection connect(const QObject *sender, const char *signal,
                         const QObject *receiver, const char *member, Qt::ConnectionType = Qt::AutoConnection);

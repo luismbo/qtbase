@@ -61,9 +61,9 @@ class Q_WIDGETS_EXPORT QPushButton : public QAbstractButton
     Q_PROPERTY(bool flat READ isFlat WRITE setFlat)
 
 public:
-    explicit QPushButton(QWidget *parent = nullptr);
-    explicit QPushButton(const QString &text, QWidget *parent = nullptr);
-    QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
+    Q_INVOKABLE explicit QPushButton(QWidget *parent = nullptr);
+    Q_INVOKABLE explicit QPushButton(const QString &text, QWidget *parent = nullptr);
+    Q_INVOKABLE QPushButton(const QIcon& icon, const QString &text, QWidget *parent = nullptr);
     ~QPushButton();
 
     QSize sizeHint() const override;
@@ -75,8 +75,8 @@ public:
     void setDefault(bool);
 
 #if QT_CONFIG(menu)
-    void setMenu(QMenu* menu);
-    QMenu* menu() const;
+    Q_INVOKABLE void setMenu(QMenu* menu);
+    Q_INVOKABLE QMenu* menu() const;
 #endif
 
     void setFlat(bool);

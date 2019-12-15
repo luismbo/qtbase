@@ -89,16 +89,17 @@ class Q_WIDGETS_EXPORT QApplication : public QGuiApplication
 
 public:
 #ifdef Q_QDOC
-    QApplication(int &argc, char **argv);
+    Q_INVOKABLE QApplication(int &argc, char **argv);
 #else
-    QApplication(int &argc, char **argv, int = ApplicationFlags);
+    Q_INVOKABLE QApplication(int &argc, char **argv, int = ApplicationFlags);
 #endif
     virtual ~QApplication();
 
-    static QStyle *style();
-    static void setStyle(QStyle*);
-    static QStyle *setStyle(const QString&);
+    /*Q_INVOKABLE*/ static QStyle *style();
+    /*Q_INVOKABLE*/ static void setStyle(QStyle*);
+    /*Q_INVOKABLE*/ static QStyle *setStyle(const QString&);
     enum ColorSpec { NormalColor=0, CustomColor=1, ManyColor=2 };
+    Q_ENUM(ColorSpec)
 #if QT_DEPRECATED_SINCE(5, 8)
     QT_DEPRECATED static int colorSpec();
     QT_DEPRECATED static void setColorSpec(int);
@@ -108,42 +109,42 @@ public:
 #endif
 
     using QGuiApplication::palette;
-    static QPalette palette(const QWidget *);
-    static QPalette palette(const char *className);
-    static void setPalette(const QPalette &, const char* className = nullptr);
-    static QFont font();
-    static QFont font(const QWidget*);
-    static QFont font(const char *className);
-    static void setFont(const QFont &, const char* className = nullptr);
-    static QFontMetrics fontMetrics();
+    /*Q_INVOKABLE*/ static QPalette palette(const QWidget *);
+    /*Q_INVOKABLE*/ static QPalette palette(const char *className);
+    /*Q_INVOKABLE*/ static void setPalette(const QPalette &, const char* className = nullptr);
+    /*Q_INVOKABLE*/ static QFont font();
+    /*Q_INVOKABLE*/ static QFont font(const QWidget*);
+    /*Q_INVOKABLE*/ static QFont font(const char *className);
+    /*Q_INVOKABLE*/ static void setFont(const QFont &, const char* className = nullptr);
+    /*Q_INVOKABLE*/ static QFontMetrics fontMetrics();
 
 #if QT_VERSION < 0x060000 // remove these forwarders in Qt 6
     static void setWindowIcon(const QIcon &icon);
     static QIcon windowIcon();
 #endif
 
-    static QWidgetList allWidgets();
-    static QWidgetList topLevelWidgets();
+    /*Q_INVOKABLE*/ static QWidgetList allWidgets();
+    /*Q_INVOKABLE*/ static QWidgetList topLevelWidgets();
 
-    static QDesktopWidget *desktop();
+    /*Q_INVOKABLE*/ static QDesktopWidget *desktop();
 
-    static QWidget *activePopupWidget();
-    static QWidget *activeModalWidget();
-    static QWidget *focusWidget();
+    /*Q_INVOKABLE*/ static QWidget *activePopupWidget();
+    /*Q_INVOKABLE*/ static QWidget *activeModalWidget();
+    /*Q_INVOKABLE*/ static QWidget *focusWidget();
 
-    static QWidget *activeWindow();
-    static void setActiveWindow(QWidget* act);
+    /*Q_INVOKABLE*/ static QWidget *activeWindow();
+    /*Q_INVOKABLE*/ static void setActiveWindow(QWidget* act);
 
-    static QWidget *widgetAt(const QPoint &p);
-    static inline QWidget *widgetAt(int x, int y) { return widgetAt(QPoint(x, y)); }
-    static QWidget *topLevelAt(const QPoint &p);
-    static inline QWidget *topLevelAt(int x, int y)  { return topLevelAt(QPoint(x, y)); }
+    /*Q_INVOKABLE*/ static QWidget *widgetAt(const QPoint &p);
+    /*Q_INVOKABLE*/ static inline QWidget *widgetAt(int x, int y) { return widgetAt(QPoint(x, y)); }
+    /*Q_INVOKABLE*/ static QWidget *topLevelAt(const QPoint &p);
+    /*Q_INVOKABLE*/ static inline QWidget *topLevelAt(int x, int y)  { return topLevelAt(QPoint(x, y)); }
 
 #if QT_DEPRECATED_SINCE(5, 0)
     QT_DEPRECATED static inline void syncX() {}
 #endif
-    static void beep();
-    static void alert(QWidget *widget, int duration = 0);
+    /*Q_INVOKABLE*/ static void beep();
+    /*Q_INVOKABLE*/ static void alert(QWidget *widget, int duration = 0);
 
     static void setCursorFlashTime(int);
     static int cursorFlashTime();
@@ -166,8 +167,8 @@ public:
     static void setStartDragDistance(int l);
     static int startDragDistance();
 
-    static bool isEffectEnabled(Qt::UIEffect);
-    static void setEffectEnabled(Qt::UIEffect, bool enable = true);
+    /*Q_INVOKABLE*/ static bool isEffectEnabled(Qt::UIEffect);
+    /*Q_INVOKABLE*/ static void setEffectEnabled(Qt::UIEffect, bool enable = true);
 
 #if QT_DEPRECATED_SINCE(5, 0)
     QT_DEPRECATED static QLocale keyboardInputLocale()
@@ -186,8 +187,8 @@ public:
     static QT_DEPRECATED_X ("Use QApplication::navigationMode() instead")
     bool keypadNavigationEnabled();
 # endif
-    static void setNavigationMode(Qt::NavigationMode mode);
-    static Qt::NavigationMode navigationMode();
+    /*Q_INVOKABLE*/ static void setNavigationMode(Qt::NavigationMode mode);
+    /*Q_INVOKABLE*/ static Qt::NavigationMode navigationMode();
 #endif
 
 Q_SIGNALS:
